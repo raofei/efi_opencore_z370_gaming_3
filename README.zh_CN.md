@@ -3,6 +3,7 @@
 ##### 摘要
 
 本EFI的SSDT来自OLARILA的一个0.8.8的版本，不过直接使用OpenCore官方Coffee Lake指导配置的SSDT也是可以的，这个版本不解锁CFG Lock的情况下，通过配置Kernel -> Quirks -> AppleXcpmCfgLock为布尔True，可以正常安装Ventura 13.7，但是升级到Sonoma14.7 可能会出现黑屏或者反复重启。我的版本主要是对这个问题进行修复并升级到**1.0.2**版OpenCore，从而顺利升级到Sonoma 14.7版本
+![系统信息](info.png)
 
 ##### 当前状态
 
