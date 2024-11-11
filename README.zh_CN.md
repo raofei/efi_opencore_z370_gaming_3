@@ -13,7 +13,7 @@ Ventura :white_check_mark:，Sonoma :white_check_mark:，Sequoia :information_so
 显卡				 :white_check_mark: \
 网卡				 :white_check_mark: \
 USB状态		 :white_check_mark: \
-休眠唤醒		 :white_check_mark: \
+休眠唤醒		 :white_check_mark: 
 
 ##### 硬件配置
 
