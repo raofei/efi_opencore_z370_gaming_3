@@ -3,17 +3,17 @@
 ##### Summary
 
 This EFI SSDT comes from a version 0.8.8 of OLARILA, but it is also possible to directly use the SSDT of OpenCore's official Coffee Lake guidance configuration, this version does not unlock CFG Lock, by configuring Kernel -> Quirks -> AppleXcpmCfgLock to Boolean True, you can install Ventura normally 13.7, but upgrading to Sonoma 14.7 may result in a black screen or repeated reboots. My version is mainly a fix for this issue and an upgrade to OpenCore 1.0.2, which makes it possible to upgrade to Sonoma 14.7 without a hitch
-! [System Information] (info.png)
+![System Information](info.png)
 
 ##### Current status
 
 Ventura :white_check_mark:，Sonoma :white_check_mark:，Sequoia :information_source:
 
-Sound Card: white_check_mark: 
-Graphics Card :white_check_mark: 
-NIC :white_check_mark: 
-USB Status: white_check_mark: 
-Wake up from sleep :white_check_mark: 
+Sound Card				 :white_check_mark: \
+Graphics Card				 :white_check_mark: \
+NIC				 :white_check_mark: \
+USB Status		 :white_check_mark: \
+Wake up from sleep		 :white_check_mark: 
 
 ##### Hardware configuration
 
@@ -77,7 +77,7 @@ Use the official @BIOS tool to flash the BIOS version to the latest F15 version 
 
 3. Configure config.plist, the EFI file has been configured as follows, modify it according to your own situation
 
-+**Important**,PlatformInfo machine information, please select**iMac 19,2** or iMac pro 1,1 as the model to generate your own three codes,**Don't use the three codes in my configuration**,It should be noted that the iMac 19,2 model does not have T2 chip detection, you can receive the upgrade push after installation, the black apple of iMac pro 1,1 cannot receive the upgrade, You need to use the RestrictEvents.kext driver and the startup parameter revpatch=sbvmm (virtual machine mode) to implement the upgrade push, which can be removed after the upgrade.
++ **Important**,PlatformInfo machine information, please select**iMac 19,2** or iMac pro 1,1 as the model to generate your own three codes,**Don't use the three codes in my configuration**,It should be noted that the iMac 19,2 model does not have T2 chip detection, you can receive the upgrade push after installation, the black apple of iMac pro 1,1 cannot receive the upgrade, You need to use the RestrictEvents.kext driver and the startup parameter revpatch=sbvmm (virtual machine mode) to implement the upgrade push, which can be removed after the upgrade.
 
 + In order to improve the compatibility and stability of the boot memory in UEFI mode, the Booter has made the following changes:
 
@@ -87,7 +87,7 @@ Booter -> Quirks: AvoidRuntimeDefrag, DevirtualiseMmio, ProtectUefiServices, Pro
 
 + DeviceProperties -> Add -> PciRoot(0x0)/Pci(0x2,0x0) -> AAPL,ig-platform-id This value Coffee lake desktop optional values **'07009B3E' and **'00009B3E'**, both of which represent a device interface rule (there is a special comparison table in the WhatEverGreen documentation), It means that there are 3 output ports, the latter is a desktop 3 output, the latter value is more compatible, and this value is recommended for installing Sonoma; device-id is the device ID of the core graphics card, which can be queried through gpu-z, and the same is written backwards, and 923E0000 is filled in when you see 3E92
 
-+**Here may be the main reason for the repeated black screen reboot of the installation of Sonoma**, the video is not output during the installation process, it is not that the installation is stuck, because there is system sound feedback when you hit the keyboard. Therefore, the following repairs need to be made to ensure that the configuration of the three output ports 0, 1, and 2 is the same, so that the HDMI output port can work normally:
++ **Here may be the main reason for the repeated black screen reboot of the installation of Sonoma**, the video is not output during the installation process, it is not that the installation is stuck, because there is system sound feedback when you hit the keyboard. Therefore, the following repairs need to be made to ensure that the configuration of the three output ports 0, 1, and 2 is the same, so that the HDMI output port can work normally:
 
 Add the key DeviceProperties -> Add -> PciRoot(0x0)/Pci(0x2,0x0) ->force-online value Data type 01000000
 
